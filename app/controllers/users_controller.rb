@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
   include ApplicationHelper
+  include SessionsHelper
+
+  def index
+    if admin?
+      @users = User.where(is_ken: false)
+    end
+  end
+
   def new
     @user = User.new
   end
@@ -18,10 +26,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: session[:user_id])
+    if admin?
+      @user = User.find_by(id: friend_id)
+    else
+      @user = User.find_by(id: session[:user_id])
+    end
   end
 
   private
+  def friend_id
+    params.require(:format)
+    #add integer matching
+  end
+
   def user_deets
       params.require(:user).permit(:name, :email, :password)
   end

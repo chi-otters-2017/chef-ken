@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    if recipe_owner?(@recipe)
+    if recipe_owner?(@recipe) || admin?
       @category = Category.find(@recipe.category_id)
       if current_user.id != @recipe.user_id
         flash[:no_access] = "You do not have permission to edit this recipe."
@@ -49,7 +49,7 @@ class RecipesController < ApplicationController
 
   def destroy
     get_recipe
-    if recipe_owner?(@recipe)
+    if recipe_owner?(@recipe) || admin?
       @category = @recipe.category
       Recipe.destroy(@recipe)
       flash[:notice] = "The recipe has been deleted."

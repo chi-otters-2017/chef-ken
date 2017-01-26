@@ -15,19 +15,19 @@
       <span class='nav-link'>
       <% if !!logged_in %>
         <% if admin? %>
-          <%= link_to "Admin tools" %>
-        </span>
-        <span>
+          <%= link_to "Admin Tools" %>
+          <%= link_to "See All Users", users_path %>
         <% end %>
+      <% elsif !!logged_in && !admin?  %>
         <%= link_to "Profile", profile_path %>
-      </span>
-      <span class='nav-link'>
       </span>
       <% else %>
         <%= link_to("Register", signup_path)%>
       <% end %>
       </span>
-      <span class='nav-link'><%= link_to "Home", "/" %></span>
+      <span class='nav-link'>
+        <%= link_to "Home", "/" %>
+      </span>
       <span class='nav-link'>
       <% if logged_in %>
         <%= link_to 'Logout', logout_path, method: :delete %>

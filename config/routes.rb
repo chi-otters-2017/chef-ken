@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'signup', to: "users#new"
   post 'signup', to: "users#create"
   get 'profile', to: "users#show"
-
+  get 'users', to: "users#index"
 
   resources :categories do
     resources :recipes, except: [:index, :show]

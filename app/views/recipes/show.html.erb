@@ -32,7 +32,7 @@
     <p>Difficulty: <%= @recipe.difficulty %></p>
     <p>Directions: <%= @recipe.directions %></p>
 
-    <% if recipe_owner?(@recipe) %>
+    <% if recipe_owner?(@recipe) || admin? %>
       <%= link_to "Edit", edit_category_recipe_path(@recipe.category, @recipe) %><br>
       <%= link_to 'Delete', category_recipe_path(@recipe.category, @recipe), method: :delete %>
       <% end %>
