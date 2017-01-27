@@ -5,6 +5,16 @@ class UsersController < ApplicationController
   def index
     if admin?
       @users = User.where(is_ken: false)
+    else
+      flash[:not_admin] = "You do not have permission to view this page."
+    end
+  end
+
+  def show
+    if admin?
+      @user = User.find_by(id: friend_id)
+    else
+      @user = User.find_by(id: session[:user_id])
     end
   end
 
@@ -25,12 +35,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    if admin?
-      @user = User.find_by(id: friend_id)
-    else
-      @user = User.find_by(id: session[:user_id])
-    end
+  def destroy
+    @user = User.find(params[:id])
+    p @user
+    @user.destroy
+
+    redirect_to users_path
   end
 
   private
