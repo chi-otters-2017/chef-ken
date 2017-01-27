@@ -75,3 +75,9 @@ div.fav-star{
   height: 4em;
   width: 4em;
 }
+
+#add-recipe {
+  border: 2px solid #A2D5F2;
+  border-radius: 10px;
+  padding: 5px 5px 5px 5px;
+}

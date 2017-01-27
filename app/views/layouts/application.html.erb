@@ -35,6 +35,19 @@
       <span class='nav-link'>
       <% if logged_in %>
         <%= link_to 'Logout', logout_path, method: :delete %>
+      </span>
+        <span class='nav-link' id='new-cat'>
+          <%= form_for :recipe do |f|%>
+          <p>
+            <%= f.select :category, options_for_select([
+            ['Appetizers', 1],
+            ['Salads', 2],
+            ['Main Dishes', 3],
+            ['Desserts', 4]]), prompt: "Select a Category"%>
+            <a id='new-recipe-link' href="/categories/1/recipes/new">Add Recipe</a>
+          </p>
+          <% end %>
+        </span>
       <% else %>
         <%= link_to "Login", login_path  %>
       <% end %>

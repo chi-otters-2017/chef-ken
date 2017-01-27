@@ -13,3 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).on('ready', function(){
+  newRecipeForCategory();
+
+});
+
+var newRecipeForCategory = function(){
+  $('#nav-bar').on('change', '#new-cat form', function(e){
+
+    e.preventDefault();
+    var $category = $(this).find("select");
+    var url = "/categories/" + $category.val() + "/recipes/new";
+    $(this).find("a").attr("href", url)
+  });
+};

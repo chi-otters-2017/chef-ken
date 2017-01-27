@@ -1,11 +1,13 @@
 <div class='container'>
-<h1>Individual Category</h1>
+<h1><%= @category.name %></h1>
 <%= flash.notice %>
 
+<ul>
 <% get_category_by_name.recipes.each do |recipe| %>
   <li class='recipe-link'><%= link_to "#{recipe.title}", recipe_path(recipe) %> </li>
 <% end %>
+</ul><br>
 
 
-<p id='add-recipe'><%= link_to "Add a Recipe!", new_category_recipe_path(@category) %></p>
+<span id='add-recipe'><%= link_to "Add a Recipe!", new_category_recipe_path(@category) %></span>
 </div>
