@@ -45,7 +45,7 @@ end
   rating_info = {
     recipe_id: (1..20).to_a.sample,
     user_id: (1..10).to_a.sample,
-    stars: (1.00..5.00).to_a.sample
+    stars: (1..5).to_a.sample
   }
 
   Rating.create(rating_info)

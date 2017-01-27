@@ -1,12 +1,20 @@
-<h3 class='notice'><%= flash[:notice]  %><h3>
-
+<% if admin? %>
 
 <h1>Friends of Ken</h1>
-
 <h3>Select a friend to view their profile</h3>
 
-<ul>
-<% @users.each do |user| %>
-  <li><%= link_to "#{user.name}", profile_path(user) %></li>
-<% end %>
-</ul>
+<table>
+  <% @users.each do |user| %>
+    <tr>
+    <td><%= link_to "#{user.name}", profile_path(user) %></td>
+    <td><%= link_to "Delete", user_path(user),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<% else %>
+  <h3 class='notice'><%= flash[:not_admin]  %><h3>
+<% end%>
